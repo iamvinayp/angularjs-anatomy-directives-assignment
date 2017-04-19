@@ -1,0 +1,36 @@
+<html ng-app="stopWatchApp">
+    <head>
+        <style type="text/css">
+            /* custom css for displaying leaderboard*/
+            #leaderboard{
+                text-align: center;
+                font-family: Nunito;
+                height: 400px;
+                width: 250px;
+                border: 1px solid teal;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js">
+        </script>
+        <script src="stopWatchApp.js"></script>
+    </head>
+    <body ng-controller="SimpleController">
+        <div stop-watch options="stopWatchOptions">
+            <h2>{{stopWatchOptions.elapsedTime | date:'MM/dd/yyyy @ h:mma # s:sss'}}</h2>
+            <button ng-click="startTimer()">Start</button>
+            <button ng-click="stopTimer()">Stop</button>
+            <button ng-click="resetTimer()">Reset</button>
+            <!-- save button to save the elapsed time. On pressing for the first time hidden leaderboard will be displayed-->
+            <button ng-click="saveTimer()">Save</button>
+            <br/><br/>
+            <div id="leaderboard" ng-show="showTime">
+                <h3>Leaderboard</h3>
+                    <div ng-repeat="log in stopWatchOptions.log">
+                        {{log/1000}} seconds
+                    </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+<!-- Exercise: Add save button to save the elapsed time to leaderboard list -->

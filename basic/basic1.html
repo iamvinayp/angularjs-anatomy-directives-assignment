@@ -1,0 +1,28 @@
+<html ng-app="myApp">
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js">
+        </script>
+        <script>
+            var myApp = angular.module("myApp", []);
+            myApp.controller('SimpleController', function($scope) {
+                $scope.person = {
+                    name: "First Last",
+                    address: "Sample address, Bangalore - 560001"
+                }
+            });
+        </script>
+    </head>
+    <body>
+        <div class="container" ng-controller="SimpleController">
+            Name: <input type="text" ng-model="person.name" /><br/><br/>
+            {{person.name}}
+            <br/><br/>
+            <!-- Added address as a property to the person object & it is bound to
+            input control via ng-model for two way databinding -->
+            Address: <input type="text" ng-model="person.address" /><br/><br/>
+            {{person.address}}
+        </div>
+    </body>
+</html>
+
+<!-- Exercise: Add address field to the model, view and controller -->

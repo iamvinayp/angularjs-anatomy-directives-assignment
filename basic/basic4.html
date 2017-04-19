@@ -1,0 +1,24 @@
+<html ng-app>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js">
+        </script>
+    </head>
+    <body ng-init="customers=[{name:'Akhil', city: 'Bengaluru'},{name:'Anil', city: 'Delhi'},{name:'Ajit', city: 'Mumbai'}]">
+        <ul>
+            <li data-ng-repeat="cust in customers | orderBy : 'name'">
+                {{cust.name | uppercase}}
+            </li>
+        </ul>
+
+        <input type="text" placeholder=" search ..." data-ng-model="nameText" />
+        <!-- Reversing the list by setting reverse property of orderBy filter to true
+        Alternatively it can be done by setting expression 'name' to '-name'  -->
+        <ul>
+            <li data-ng-repeat="cust in customers | filter : nameText | orderBy:'name' : true">
+                {{cust.name}} - {{cust.city}}
+            </li>
+        </ul>
+    </body>
+</html>
+
+<!-- Exercise: Reverse the orderBy filter -->

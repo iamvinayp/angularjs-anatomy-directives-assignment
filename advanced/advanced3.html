@@ -1,0 +1,66 @@
+<html ng-app="myApp">
+    <head>
+        <!-- adding simple preloader using css -->
+        <style type="text/css">
+        .loader {
+            position: relative;
+            left: 70px;
+            top: 25px;
+            border: 5px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 5px solid #3498db;
+            width: 20px;
+            height: 20px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+        @-webkit-keyframes spin {
+            0% { -webkit-transform: rotate(0deg); }
+            100% { -webkit-transform: rotate(360deg); }
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js">
+        </script>
+    </head>
+    <body>
+        <div class="container" ng-controller="SimpleController">
+            <h3>Loading Customer List</h3>
+            <!-- initially ng-show will be true and preloader will be shown
+            once $http ajax call is resolved it will be false and preloader
+            will be hidden -->
+            <div class="loader" ng-show="preloader">
+            </div>
+            <ul>
+                <li ng-repeat="cust in customers">
+                    {{ cust.name }} - {{ cust.city }}
+                </li>
+            </ul>
+        </div>
+        <script>
+            var myApp = angular.module("myApp", []);
+            myApp.controller('SimpleController', function($scope, $q, $http, $timeout) {
+                $scope.preloader = true;
+                var deferred = $q.defer();
+                $timeout(function() {
+                    $http.get('customers.json').success(function (data) {
+                        // process the data here
+                        deferred.resolve(data);
+                        $scope.preloader = false;
+                    }).error(function (error) {
+                        // error handling
+                        deferred.reject();
+                    });
+                }, 2000);
+                deferred.promise.then(function(data){
+                    $scope.customers = data;
+                });
+            });
+        </script>
+    </body>
+</html>
+
+<!-- Exercise: Show preloader till the time customer list is loading -->

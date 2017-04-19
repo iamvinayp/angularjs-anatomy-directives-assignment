@@ -1,0 +1,16 @@
+<html ng-app="demoApp">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>
+    <script src="demoApp.js"></script>
+    <body>
+        <ul>
+            <li><a href="#/">Default</a></li>
+            <li><a href="#/DemoAppView1">View1</a></li>
+            <li><a href="#/DemoAppView2">View2</a></li>
+        </ul>
+        <div ng-view></div>
+    </body>
+</html>
+
+<!-- Added input conrtrol to bind to nameText in both views to make filter functional -->
+<!-- Exercise: Add input with binding to nameText to make the nameText filter functional -->

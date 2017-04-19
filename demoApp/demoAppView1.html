@@ -1,0 +1,10 @@
+<div>
+    <h2>Demo App View1</h2>
+    <!-- input conrtrol to bind to nameText to make filter functional -->
+    <input type="text" placeholder=" search ..." ng-model="nameText"/>
+    <ul>
+        <li data-ng-repeat="cust in customers | filter: nameText | orderBy: 'name'">
+            {{cust.name}} - {{cust.city}}
+        </li>
+    </ul>
+</div>
